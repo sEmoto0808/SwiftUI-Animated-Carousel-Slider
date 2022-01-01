@@ -15,6 +15,8 @@ struct HomePage: View {
 
         VStack {
 
+            let isSmallDevice = getScreenSize().height < 750
+
             Text(foods[currentIndex].itemTitle)
                 .font(.largeTitle.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -92,11 +94,11 @@ struct HomePage: View {
                                 .padding(-15)
                                 .rotationEffect(.init(degrees: -90))
                         )
-                        .frame(width: size.width, height: size.width * 1.8)
+                        .frame(width: size.width, height: size.width * (isSmallDevice ? 1.5 : 1.8))
                         .frame(maxHeight: .infinity, alignment: .center)
                         .offset(x: 70)
                 }
-                .frame(height: (getScreenSize().width / 2) * 2)
+                .frame(height: (getScreenSize().width / 2) * (isSmallDevice ? 1.6 : 2))
             }
 
             // MARK: Food Description
