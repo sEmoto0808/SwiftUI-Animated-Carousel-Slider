@@ -98,6 +98,14 @@ struct HomePage: View {
                 }
                 .frame(height: (getScreenSize().width / 2) * 2)
             }
+
+            // MARK: Food Description
+            Text("A text view draws a string in your app’s user interface using a body font that’s appropriate for the current platform. You can choose a different standard font, like title or caption, using the font(_:) view modifier.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .lineSpacing(8)
+                .lineLimit(3)
+                .padding(.vertical)
         }
         .padding()
         .foregroundColor(.white)
