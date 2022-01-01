@@ -13,6 +13,7 @@
 		9A201C502780500300092E4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A201C3E2780500200092E4B /* ContentView.swift */; };
 		9A201C512780500300092E4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A201C3F2780500300092E4B /* Assets.xcassets */; };
 		9A201C522780500300092E4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A201C3F2780500300092E4B /* Assets.xcassets */; };
+		9A8994CE27805A87006315D5 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8994CD27805A87006315D5 /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		9A201C442780500300092E4B /* Carousel-Slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carousel-Slider.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A201C4A2780500300092E4B /* Carousel-Slider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carousel-Slider.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A201C4C2780500300092E4B /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		9A8994CD27805A87006315D5 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,8 @@
 		9A201C3C2780500200092E4B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9A8994CC27805A76006315D5 /* Model */,
+				9A8994CB27805A6B006315D5 /* View */,
 				9A201C3D2780500200092E4B /* Carousel_SliderApp.swift */,
 				9A201C3E2780500200092E4B /* ContentView.swift */,
 				9A201C3F2780500300092E4B /* Assets.xcassets */,
@@ -76,6 +80,21 @@
 				9A201C4C2780500300092E4B /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		9A8994CB27805A6B006315D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A8994CC27805A76006315D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A8994CD27805A87006315D5 /* Food.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +197,7 @@
 			files = (
 				9A201C4F2780500300092E4B /* ContentView.swift in Sources */,
 				9A201C4D2780500300092E4B /* Carousel_SliderApp.swift in Sources */,
+				9A8994CE27805A87006315D5 /* Food.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
