@@ -15,7 +15,7 @@ struct Food: Identifiable {
 }
 
 let foods = [
-    Food(itemImage: "food1", itemTitle: "Yummy Cake"),
+    Food(itemImage: "food1", itemTitle: "Yummy Shortcake"),
     Food(itemImage: "food2", itemTitle: "Delicious Pizza"),
     Food(itemImage: "food3", itemTitle: "Yummy Loco Moco"),
 ]
