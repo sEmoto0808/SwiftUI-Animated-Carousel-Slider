@@ -156,7 +156,11 @@ struct HomePage: View {
                     }
 
                     if translation > 0 && translation > 50 {
+
                         // MARK: Swiped Down
+                        withAnimation(.easeInOut(duration: 0.6)) {
+                            bgOffset += getScreenSize().height
+                        }
                     }
                 })
         )
