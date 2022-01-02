@@ -190,13 +190,13 @@ struct HomePage: View {
             imageAnimated = true
         }
 
-        // Updating Index
-        currentIndex = isUp ? currentIndex + 1 : currentIndex - 1
-
         // MARK: Changing Text Color After Some time
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
 
             textAnimated = false
+
+            // Updating Index
+            currentIndex = isUp ? currentIndex + 1 : currentIndex - 1
 
             withAnimation(.easeInOut) {
                 // Automatic Change
