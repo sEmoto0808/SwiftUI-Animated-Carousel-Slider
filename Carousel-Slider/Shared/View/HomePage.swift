@@ -204,6 +204,11 @@ struct HomePage: View {
                             bgOffset += getScreenSize().height
                         }
 
+                        withAnimation(.interactiveSpring(response: 1.5, dampingFraction: 0.8, blendDuration: 0.8)) {
+
+                            imageAnimated = true
+                        }
+
                         // MARK: Changing Text Color After Some time
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
 
@@ -216,6 +221,12 @@ struct HomePage: View {
                                 // Automatic Change
                                 textColor = textColor == .black ? .white : .black
                             }
+                        }
+
+                        // Setting Back to Original State after animation Finished
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+
+                            imageAnimated = false
                         }
                     }
                 })
