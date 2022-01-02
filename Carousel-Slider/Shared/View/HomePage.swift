@@ -11,6 +11,10 @@ struct HomePage: View {
     // MARK: Current Index
     @State var currentIndex = 0
 
+    // MARK: Animation Properties
+    @State var bgOffset: CGFloat = 0
+    @State var textColor: Color = .white
+
     var body: some View {
 
         VStack {
@@ -83,9 +87,10 @@ struct HomePage: View {
                                 .stroke(
                                     LinearGradient(
                                         colors: [
-                                            Color.white,
-                                            Color.white.opacity(0.1),
-                                            Color.white.opacity(0.1)],
+                                            textColor,
+                                            textColor.opacity(0.1),
+                                            textColor.opacity(0.1)
+                                        ],
                                         startPoint: .top,
                                         endPoint: .bottom
                                     ),
@@ -110,7 +115,7 @@ struct HomePage: View {
                 .padding(.vertical)
         }
         .padding()
-        .foregroundColor(.white)
+        .foregroundColor(textColor)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color("MidnightBlue"))
     }
