@@ -117,7 +117,49 @@ struct HomePage: View {
         .padding()
         .foregroundColor(textColor)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color("MidnightBlue"))
+        .background(
+
+            GeometryReader { proxy in
+
+                let height = proxy.size.height
+
+                LazyVStack(spacing: 0) {
+
+                    ForEach(foods.indices, id: \.self) { index in
+
+                        if index % 2 == 0 {
+                            Color("MidnightBlue")
+                                .frame(height: height)
+                        } else {
+                            Color.white
+                                .frame(height: height)
+                        }
+                    }
+                }
+                .offset(y: bgOffset)
+            }
+                .ignoresSafeArea()
+        )
+        .gesture(
+
+            DragGesture()
+                .onEnded({ value in
+
+                    let translation = value.translation.height
+
+                    if translation < 0 && -translation > 50 {
+
+                        // MARK: Swiped Up
+                        withAnimation(.easeInOut(duration: 0.6)) {
+                            bgOffset += -getScreenSize().height
+                        }
+                    }
+
+                    if translation > 0 && translation > 50 {
+                        // MARK: Swiped Down
+                    }
+                })
+        )
     }
 }
 
