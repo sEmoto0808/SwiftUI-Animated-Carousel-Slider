@@ -40,40 +40,15 @@ struct HomePage: View {
                 // MARK: Food Detail
                 VStack(alignment: .leading, spacing: 25) {
 
-                    Label {
-                        Text("1 Hour")
-                    } icon: {
-                        Image(systemName: "flame")
-                            .frame(width: 30)
-                    }
+                    menuLabel(text: "1 Hour", icon: "flame")
 
-                    Label {
-                        Text("40")
-                    } icon: {
-                        Image(systemName: "bookmark")
-                            .frame(width: 30)
-                    }
+                    menuLabel(text: "40", icon: "bookmark")
 
-                    Label {
-                        Text("Easy")
-                    } icon: {
-                        Image(systemName: "bolt")
-                            .frame(width: 30)
-                    }
+                    menuLabel(text: "Easy", icon: "bolt")
 
-                    Label {
-                        Text("Safety")
-                    } icon: {
-                        Image(systemName: "safari")
-                            .frame(width: 30)
-                    }
+                    menuLabel(text: "Safety", icon: "safari")
 
-                    Label {
-                        Text("Healthy")
-                    } icon: {
-                        Image(systemName: "drop")
-                            .frame(width: 30)
-                    }
+                    menuLabel(text: "Healthy", icon: "drop")
                 }
                 .font(.title3)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -175,6 +150,15 @@ struct HomePage: View {
                     }
                 })
         )
+    }
+
+    func menuLabel(text: String, icon: String) -> some View {
+        return Label {
+            Text(text)
+        } icon: {
+            Image(systemName: icon)
+                .frame(width: 30)
+        }
     }
 
     private func animateSlide(isUp: Bool) {
