@@ -15,6 +15,10 @@ struct HomePage: View {
     @State var bgOffset: CGFloat = 0
     @State var textColor: Color = .white
 
+    // MARK: Text & Image Animation
+    @State var textAnimated = false
+    @State var imageAnimated = false
+
     var body: some View {
 
         VStack {
@@ -25,6 +29,9 @@ struct HomePage: View {
                 .font(.largeTitle.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .frame(height: 100, alignment: .top)
+                .offset(y: textAnimated ? 200 : 0)
+                .clipped()
+                .animation(.easeInOut, value: textAnimated)
                 .padding(.top)
 
             // MARK: Food Details With Image
@@ -112,6 +119,9 @@ struct HomePage: View {
                 .foregroundStyle(.secondary)
                 .lineSpacing(8)
                 .lineLimit(3)
+                .offset(y: textAnimated ? 200 : 0)
+                .clipped()
+                .animation(.easeInOut, value: textAnimated)
                 .padding(.vertical)
         }
         .padding()
@@ -150,12 +160,17 @@ struct HomePage: View {
                     if translation < 0 && -translation > 50 && currentIndex < foods.count - 1 {
 
                         // MARK: Swiped Up
+
+                        textAnimated = true
+
                         withAnimation(.easeInOut(duration: 0.6)) {
                             bgOffset += -getScreenSize().height
                         }
 
                         // MARK: Changing Text Color After Some time
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+
+                            textAnimated = false
 
                             // Updating Index
                             currentIndex += 1
@@ -170,12 +185,17 @@ struct HomePage: View {
                     if translation > 0 && translation > 50 && currentIndex > 0 {
 
                         // MARK: Swiped Down
+
+                        textAnimated = true
+
                         withAnimation(.easeInOut(duration: 0.6)) {
                             bgOffset += getScreenSize().height
                         }
 
                         // MARK: Changing Text Color After Some time
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+
+                            textAnimated = false
 
                             // Updating Index
                             currentIndex -= 1
