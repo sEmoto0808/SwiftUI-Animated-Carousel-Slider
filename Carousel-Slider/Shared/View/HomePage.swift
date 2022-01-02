@@ -147,19 +147,43 @@ struct HomePage: View {
 
                     let translation = value.translation.height
 
-                    if translation < 0 && -translation > 50 {
+                    if translation < 0 && -translation > 50 && currentIndex < foods.count - 1 {
 
                         // MARK: Swiped Up
                         withAnimation(.easeInOut(duration: 0.6)) {
                             bgOffset += -getScreenSize().height
                         }
+
+                        // MARK: Changing Text Color After Some time
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+
+                            // Updating Index
+                            currentIndex += 1
+
+                            withAnimation(.easeInOut) {
+                                // Automatic Change
+                                textColor = textColor == .black ? .white : .black
+                            }
+                        }
                     }
 
-                    if translation > 0 && translation > 50 {
+                    if translation > 0 && translation > 50 && currentIndex > 0 {
 
                         // MARK: Swiped Down
                         withAnimation(.easeInOut(duration: 0.6)) {
                             bgOffset += getScreenSize().height
+                        }
+
+                        // MARK: Changing Text Color After Some time
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+
+                            // Updating Index
+                            currentIndex -= 1
+
+                            withAnimation(.easeInOut) {
+                                // Automatic Change
+                                textColor = textColor == .black ? .white : .black
+                            }
                         }
                     }
                 })
