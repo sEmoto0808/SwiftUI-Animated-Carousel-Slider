@@ -156,81 +156,59 @@ struct HomePage: View {
             DragGesture()
                 .onEnded({ value in
 
+                    if imageAnimated {
+                        return
+                    }
+
                     let translation = value.translation.height
 
                     if translation < 0 && -translation > 50 && currentIndex < foods.count - 1 {
 
                         // MARK: Swiped Up
-
-                        textAnimated = true
-
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            bgOffset += -getScreenSize().height
-                        }
-
-                        withAnimation(.interactiveSpring(response: 1.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-
-                            imageAnimated = true
-                        }
-
-                        // MARK: Changing Text Color After Some time
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-
-                            textAnimated = false
-
-                            // Updating Index
-                            currentIndex += 1
-
-                            withAnimation(.easeInOut) {
-                                // Automatic Change
-                                textColor = textColor == .black ? .white : .black
-                            }
-                        }
-
-                        // Setting Back to Original State after animation Finished
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-
-                            imageAnimated = false
-                        }
+                        animateSlide(isUp: true)
                     }
 
                     if translation > 0 && translation > 50 && currentIndex > 0 {
 
                         // MARK: Swiped Down
-
-                        textAnimated = true
-
-                        withAnimation(.easeInOut(duration: 0.6)) {
-                            bgOffset += getScreenSize().height
-                        }
-
-                        withAnimation(.interactiveSpring(response: 1.5, dampingFraction: 0.8, blendDuration: 0.8)) {
-
-                            imageAnimated = true
-                        }
-
-                        // MARK: Changing Text Color After Some time
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-
-                            textAnimated = false
-
-                            // Updating Index
-                            currentIndex -= 1
-
-                            withAnimation(.easeInOut) {
-                                // Automatic Change
-                                textColor = textColor == .black ? .white : .black
-                            }
-                        }
-
-                        // Setting Back to Original State after animation Finished
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-
-                            imageAnimated = false
-                        }
+                        animateSlide(isUp: false)
                     }
                 })
         )
+    }
+
+    private func animateSlide(isUp: Bool) {
+
+        textAnimated = true
+
+        withAnimation(.easeInOut(duration: 0.6)) {
+            bgOffset += isUp ? -getScreenSize().height : getScreenSize().height
+        }
+
+        withAnimation(.interactiveSpring(response: 1.5, dampingFraction: 0.8, blendDuration: 0.8)) {
+
+            imageAnimated = true
+        }
+
+        // Updating Index
+        currentIndex = isUp ? currentIndex + 1 : currentIndex - 1
+
+        // MARK: Changing Text Color After Some time
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+
+            textAnimated = false
+
+            withAnimation(.easeInOut) {
+                // Automatic Change
+                textColor = textColor == .black ? .white : .black
+            }
+        }
+
+        // Setting Back to Original State after animation Finished
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+
+            imageAnimated = false
+        }
     }
 }
 
